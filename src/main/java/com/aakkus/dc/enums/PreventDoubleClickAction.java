@@ -1,6 +1,6 @@
 package com.aakkus.dc.enums;
 
-public enum ClickableAction {
+public enum PreventDoubleClickAction {
 
     DOTHROW, DONOTHING
 
