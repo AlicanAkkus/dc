@@ -33,6 +33,10 @@ public class PreventDoubleClickService {
         cache.clear();
     }
 
+    public void flushByKey(String key) {
+        cache.remove(key);
+    }
+
     private boolean isExpriedPreventDoubleClickForMethod(String key, Pair<Long, Long> pair) {
         Long puttingTime = pair.getKey();
         Long durationTime = pair.getValue();
