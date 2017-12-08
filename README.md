@@ -1,11 +1,11 @@
-# dc(double click)
+# Prevent DC(double click)
 
-prevent double click or form submission for post request
+prevent double click / form submission for all http request
 
 Sample;
 
 ```
 
-@Clickable(inMilliSeconds = 5000L, action = ClickableAction.DOTHROW)
+@PreventDoubleClick(inMilliSeconds = 5000L, action = PreventDoubleClickAction.DOTHROW)
 
 ```
