@@ -6,9 +6,9 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @SpringBootApplication
 @EnableAspectJAutoProxy
-public class DcApplication {
+public class PreventDoubleClickApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DcApplication.class, args);
+        SpringApplication.run(PreventDoubleClickApplication.class, args);
     }
 }

@@ -11,14 +11,14 @@ public class PreventDoubleClickService {
 
     private Map<String, Pair<Long, Long>> cache = new HashMap<>();
 
-    public boolean isExpried(String key) {
+    public boolean isExpired(String key) {
         Pair<Long, Long> doubleClickMethod = cache.get(key);
 
         if (isNew(doubleClickMethod)) {
             return true;
         }
 
-        if (isExpriedPreventDoubleClickForMethod(key, doubleClickMethod)) {
+        if (isExpiredPreventDoubleClickForMethod(key, doubleClickMethod)) {
             return true;
         }
 
@@ -37,18 +37,18 @@ public class PreventDoubleClickService {
         cache.remove(key);
     }
 
-    private boolean isExpriedPreventDoubleClickForMethod(String key, Pair<Long, Long> pair) {
+    private boolean isExpiredPreventDoubleClickForMethod(String key, Pair<Long, Long> pair) {
         Long puttingTime = pair.getKey();
         Long durationTime = pair.getValue();
 
-        if (isTimeExpried(puttingTime, durationTime)) {
+        if (isTimeExpired(puttingTime, durationTime)) {
             cache.remove(key);
             return true;
         }
         return false;
     }
 
-    private boolean isTimeExpried(Long puttingTime, Long durationTime) {
+    private boolean isTimeExpired(Long puttingTime, Long durationTime) {
         return System.currentTimeMillis() - puttingTime > durationTime;
     }
 

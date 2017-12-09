@@ -2,7 +2,7 @@ package com.aakkus.dc.aspect;
 
 import com.aakkus.dc.annotation.PreventDoubleClick;
 import com.aakkus.dc.enums.PreventDoubleClickAction;
-import com.aakkus.dc.exception.PreventDCMethodCouldNotExecuted;
+import com.aakkus.dc.exception.PreventDoubleClickMethodCouldNotExecuted;
 import com.aakkus.dc.service.PreventDoubleClickService;
 import org.apache.commons.lang3.tuple.Pair;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -30,7 +30,7 @@ public class PreventDoubleClickAspect {
         String clickedMethodWithSessionId = sessionId + methodSignature;
 
         PreventDoubleClick preventDoubleClick = retrieveDoubleClick(joinPoint);
-        if (preventDoubleClickService.isExpried(clickedMethodWithSessionId)) {
+        if (preventDoubleClickService.isExpired(clickedMethodWithSessionId)) {
             putNewDoubleClickToCache(clickedMethodWithSessionId, preventDoubleClick);
 
             return joinPoint.proceed();
@@ -41,7 +41,7 @@ public class PreventDoubleClickAspect {
 
     private Object doActionForDoubleClick(ProceedingJoinPoint joinPoint, PreventDoubleClick preventDoubleClick) throws Throwable {
         if (PreventDoubleClickAction.DOTHROW.equals(preventDoubleClick.action())) {
-            throw new PreventDCMethodCouldNotExecuted(preventDoubleClick.message());
+            throw new PreventDoubleClickMethodCouldNotExecuted(preventDoubleClick.message());
         } else {
             return joinPoint.proceed();
         }
